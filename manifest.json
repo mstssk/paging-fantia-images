@@ -5,7 +5,11 @@
   "content_scripts": [
     {
       "matches": ["https://fantia.jp/posts/*"],
-      "js": ["index.js"]
+      "js": ["fantia.js"]
+    },
+    {
+      "matches": ["https://*.fanbox.cc/posts/*"],
+      "js": ["fanbox.js"]
     }
   ]
 }
