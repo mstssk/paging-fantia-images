@@ -8,7 +8,10 @@
       "js": ["fantia.js"]
     },
     {
-      "matches": ["https://*.fanbox.cc/posts/*"],
+      "matches": [
+        "https://*.fanbox.cc/posts/*",
+        "https://www.fanbox.cc/@*/posts/*"
+      ],
       "js": ["fanbox.js"]
     }
   ]
