@@ -1,5 +1,5 @@
 document.body.addEventListener("keydown", (e) => {
-  if ([e.altKey, e.ctrlKey, e.shiftKey, e.metaKey].some((b) => b)) {
+  if (e.altKey || e.ctrlKey || e.shiftKey || e.metaKey) {
     return; // 修飾キー付きはブラウザのホットキーなどの場合があるので無視
   }
   if (e.key === "o") {
