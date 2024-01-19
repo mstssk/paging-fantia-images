@@ -7,8 +7,9 @@ document.body.addEventListener("keydown", (e) => {
   } else if (e.key === "ArrowLeft") {
     document.querySelector(".move-button.clickable.prev")?.click();
   } else if (e.key === "Escape") {
-    document.querySelector(`a[ng-click="slideshow.close()"]`)?.click();
+    document.querySelector("a > .fa-close")?.closest("a")?.click();
   } else if (e.key === "o") {
-    document.querySelector(`a[ng-if="array[index].url.original"]`)?.click();
+    const path = `${location.pathname}/post_content_photo/`.replace("//", "/");
+    document.querySelector(`a[href^="${path}"]`)?.click();
   }
 });
