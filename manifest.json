@@ -2,10 +2,14 @@
   "manifest_version": 3,
   "name": "Paging Fantia Post Images with arrow keys",
   "version": "0.0.1",
+  "permissions": ["downloads"],
+  "background": {
+    "service_worker": "sw.js"
+  },
   "content_scripts": [
     {
       "matches": ["https://fantia.jp/posts/*"],
-      "js": ["fantia.js"]
+      "js": ["fantia.js", "fantia_downloads.js"]
     },
     {
       "matches": ["https://fantia.jp/posts/*/post_content_photo/*"],
