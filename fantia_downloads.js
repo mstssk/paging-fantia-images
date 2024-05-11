@@ -33,6 +33,19 @@ function addBatchDownloadButton(galleryElem) {
 }
 
 async function downloadImages(anchors) {
+  // e.g. '2024-05-11 20-07-36'
+  const directory = new Intl.DateTimeFormat("ja-JP", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    timeZone: "Asia/Tokyo",
+  })
+    .format(new Date())
+    .replace(/[:/]/g, "-");
+
   for (let i = 0; i < anchors.length; i++) {
     if (i === 0) {
       anchors.at(0).click(); // 最初の画像を開く
@@ -50,7 +63,7 @@ async function downloadImages(anchors) {
       .querySelector("img");
     const extension = new URL(img.src).pathname.split(".").pop();
     const fileNo = `000${i + 1}`.slice(-3);
-    const filename = `${fileNo}.${extension}`;
+    const filename = `${directory}/${fileNo}.${extension}`;
     const downloadOption = { filename, url: img.src };
     const message = { type: "download", payload: downloadOption };
     await chrome.runtime.sendMessage(message);
