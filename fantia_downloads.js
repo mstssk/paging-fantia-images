@@ -68,6 +68,8 @@ async function downloadImages(anchors) {
     const message = { type: "download", payload: downloadOption };
     await chrome.runtime.sendMessage(message);
   }
+
+  await chrome.runtime.sendMessage({ type: "showDownloadFolder" });
 }
 
 async function sleep(ms) {

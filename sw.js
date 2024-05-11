@@ -6,5 +6,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       sendResponse();
     });
     return true; // sendResponseを非同期にするために必要
+  } else if (message.type === "showDownloadFolder") {
+    chrome.downloads.showDefaultFolder();
   }
 });
