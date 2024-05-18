@@ -20,7 +20,7 @@
         "https://*.fanbox.cc/posts/*",
         "https://www.fanbox.cc/@*/posts/*"
       ],
-      "js": ["fanbox.js"]
+      "js": ["fanbox.js", "fanbox_download.js"]
     }
   ]
 }
