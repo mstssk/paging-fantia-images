@@ -33,8 +33,12 @@ function addBatchDownloadButton(galleryElem) {
 }
 
 async function downloadImages(anchors) {
+  const [author, title] = Array.from(document.querySelectorAll("h1")).map((e) =>
+    e.textContent.trim()
+  );
+
   // e.g. '2024-05-11 20-07-36'
-  const directory = new Intl.DateTimeFormat("ja-JP", {
+  const timestamp = new Intl.DateTimeFormat("ja-JP", {
     year: "numeric",
     month: "2-digit",
     day: "2-digit",
@@ -45,6 +49,8 @@ async function downloadImages(anchors) {
   })
     .format(new Date())
     .replace(/[:/]/g, "-");
+
+  const directory = `${timestamp} [${author}]${title}`;
 
   for (let i = 0; i < anchors.length; i++) {
     if (i === 0) {
