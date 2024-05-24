@@ -34,7 +34,7 @@ function addBatchDownloadButton(galleryElem) {
 
 async function downloadImages(anchors) {
   const [author, title] = Array.from(document.querySelectorAll("h1")).map((e) =>
-    e.textContent.trim()
+    esc(e.textContent.trim())
   );
 
   // e.g. '2024-05-11 20-07-36'
@@ -80,4 +80,9 @@ async function downloadImages(anchors) {
 
 async function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+// ローカルファイルシステム向けにエスケープ
+function esc(str) {
+  return str.replace(/[:\/]/g, "_");
 }

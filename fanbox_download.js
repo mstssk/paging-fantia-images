@@ -1,27 +1,27 @@
 // content scriptの読み込みタイミングだと若干早いので、setTimeoutで遅延させる。
 setTimeout(() => {
-  const firstImgElemContainer = document.querySelector(
-    "article [class^='styled__FullWidthWrapper'] [class^='PostImage__Wrapper-sc-xvj0xk-0 IXhFz']"
+  const anchors = Array.from(
+    document.querySelectorAll(
+      "a[href^='https://downloads.fanbox.cc/images/post/']"
+    )
   );
-  const galleryElem = firstImgElemContainer.closest(
-    "[class^='styled__FullWidthWrapper']"
-  );
-
-  addBatchDownloadButton(galleryElem);
+  if (anchors.length > 0) {
+    addBatchDownloadButton(anchors);
+  }
 }, 10);
 
-function addBatchDownloadButton(galleryElem) {
+function addBatchDownloadButton(anchors) {
   const button = document.createElement("button");
   button.style.position = "absolute"; // 既存スタイルを壊さないよう、別のスタックコンテキストに置く。
   button.style.transform = "translateY(-100%)";
   button.textContent = "⬇️";
-  galleryElem.insertBefore(button, galleryElem.firstChild);
+  anchors.at(0).parentElement.insertBefore(button, anchors.at(0));
+
   button.addEventListener("click", (event) => {
     event.preventDefault();
     event.stopPropagation();
 
     try {
-      const anchors = Array.from(galleryElem.querySelectorAll("a[href]"));
       downloadImages(anchors)
         .then(() => console.log("done"))
         .catch(console.warn);
@@ -32,8 +32,8 @@ function addBatchDownloadButton(galleryElem) {
 }
 
 async function downloadImages(anchors) {
-  const author = document.querySelector("h1").textContent.trim();
-  const title = document.querySelector("article h1").textContent.trim();
+  const author = esc(document.querySelector("h1").textContent.trim());
+  const title = esc(document.querySelector("article h1").textContent.trim());
 
   // e.g. '2024-05-11 20-07-36'
   const timestamp = new Intl.DateTimeFormat("ja-JP", {
@@ -65,4 +65,9 @@ async function downloadImages(anchors) {
 
 async function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+// ローカルファイルシステム向けにエスケープ
+function esc(str) {
+  return str.replace(/[:\/]/g, "_");
 }
