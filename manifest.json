@@ -21,6 +21,10 @@
         "https://www.fanbox.cc/@*/posts/*"
       ],
       "js": ["fanbox.js", "fanbox_download.js"]
+    },
+    {
+      "matches": ["https://*.fanbox.cc/*"],
+      "css": ["fanbox.css"]
     }
   ]
 }

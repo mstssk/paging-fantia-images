@@ -1,0 +1,14 @@
+/* 拡大画像 最大化 */
+div.LazyImage__Inner-sc-74vu3p-2 {
+  top: 0;
+  height: 100vh;
+}
+
+/* 「オリジナルサイズで表示」ボタンの位置 調整 */
+a[class^="PostImageModal__Anchor"] {
+  bottom: unset;
+  left: unset;
+  top: 24px;
+  right: calc(24px + 40px + 8px);
+  transform: unset;
+}
