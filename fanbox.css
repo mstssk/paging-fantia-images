@@ -1,6 +1,8 @@
 /* 拡大画像 最大化 */
 div.LazyImage__Inner-sc-74vu3p-2 {
   top: 0;
+  left: 0;
+  width: 100vw;
   height: 100vh;
 }
 
